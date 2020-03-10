@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Register</title>
+  </head>
+  <body>
+    <form method="post">
+      {% csrf_token %}
+       {% for field in registration_form %}
+       <p>
+         {{field.label_tag}}
+         {{field}}
+       {% if field.help_text %}
+        <small style="color:grey;">{{field.help_text}}</small>
+       {% endif %}
+
+       {% for errors in field.errors %}
+        <p style="color:red">{{error}}</p>
+       {% endfor %}
+      </p>
+       {% endfor %}
+      <button type="submit" name="button">Register</button>
+    </form>
+
+  </body>
+</html>

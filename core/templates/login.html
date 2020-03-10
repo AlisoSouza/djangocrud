@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Log in</title>
+  </head>
+  <body>
+    <form method="post">
+      {% csrf_token %}
+       {% for field in login_form %}
+       <p>
+         {{field.label_tag}}
+         {{field}}
+       {% if field.help_text %}
+        <small style="color:grey">{{field.help_text}}</small>
+       {% endif %}
+       {% for errors in login_form.errors %}
+        <p style="color:red;">{{errors}}</p>
+       {% endfor %}
+
+      </p>
+       {% endfor %}
+       {% if login_form.non_fild_errors %}
+          {<div style="color:red;">
+            <p>{{login_form.non_fild_errors}}</p>
+
+          </div>}
+       {% endif %}
+      <button type="submit" name="button">Log in</button>
+    </form>
+  </body>
+</html>
